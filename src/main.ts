@@ -1,9 +1,9 @@
 import { createApp, type App } from 'vue'
-import { setupStore } from './stores'
-import AppCmp from './App.vue'
-import router from './router'
+import { setupStore } from '@/stores'
+import AppCmp from '@/App.vue'
+import router from '@/router'
 import 'virtual:uno.css'
-import './assets/main.css'
+import '@/styles/index.css'
 
 const app = createApp(AppCmp)
 

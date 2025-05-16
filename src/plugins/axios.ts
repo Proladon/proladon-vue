@@ -31,10 +31,10 @@ class AdminApi {
     this.setupInterceptorsResponse()
   }
 
-  /** `token`过期后，暂存待执行的请求 */
+  /** `token`過期後，暫存待執行的請求 */
   private static requests = []
 
-  /** 防止重复刷新`token` */
+  /** 防止重複刷新`token` */
   private static isRefreshing = false
 
   private setupInterceptorsRequest(): void {

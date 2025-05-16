@@ -1,0 +1,7 @@
+/* @import url('./radix/index.css'); */
+
+html {
+  font-family: 'Noto Sans TC', sans-serif, 'Courier New', Courier, monospace;
+  /* transition: all 0.3s ease-in-out; */
+  /* background-color: rgb(var(--bob-bg-primary)); */
+}
