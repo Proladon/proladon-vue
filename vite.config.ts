@@ -28,9 +28,9 @@ export default defineConfig({
     }),
     Components({})
   ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+  resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
+  build: {
+    sourcemap: false,
+    chunkSizeWarningLimit: 4000 // 消除打包大小超過500kb警告
   }
 })

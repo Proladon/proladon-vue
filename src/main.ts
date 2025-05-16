@@ -1,15 +1,16 @@
-import './assets/main.css'
-
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-
-import App from './App.vue'
+import { createApp, type App } from 'vue'
+import { setupStore } from './stores'
+import AppCmp from './App.vue'
 import router from './router'
 import 'virtual:uno.css'
+import './assets/main.css'
 
-const app = createApp(App)
+const app = createApp(AppCmp)
 
-app.use(createPinia())
-app.use(router)
+const startApp = async (app: App) => {
+  app.use(router)
+  setupStore(app)
+  app.mount('#app')
+}
 
-app.mount('#app')
+await startApp(app)

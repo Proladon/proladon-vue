@@ -1,23 +1,27 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import { createRouterGuards } from './guard'
+import type { IModuleType } from './types'
+import { baseRoutes } from './modules/base'
+
+const modules = import.meta.glob<IModuleType>('./modules/**/*.ts', { eager: true })
+
+const routeModuleList: RouteRecordRaw[] = Object.keys(modules).reduce(
+  (list: RouteRecordRaw[], key) => {
+    const mod = modules[key].default ?? {}
+    const modList = Array.isArray(mod) ? [...mod] : [mod]
+    return [...list, ...modList]
+  },
+  []
+)
+
+export const asyncRoutes = [...routeModuleList]
+export const constantRoutes: RouteRecordRaw[] = [...baseRoutes]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
+  routes: [...constantRoutes]
 })
+
+createRouterGuards(router)
 
 export default router
