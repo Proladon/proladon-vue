@@ -1,4 +1,4 @@
-import { adminApi } from '@/plugins/axios'
+import { adminApi } from '@/libs/axios'
 
 export const GetUsers = ({
   name,
